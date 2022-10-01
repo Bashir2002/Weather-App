@@ -39,10 +39,14 @@ const AppProvider = ({ children }) => {
           fetchData(lat, long)
           fetchLoc(lat, long)
         },
-        function () {
-          alert('Could not get your position')
+        function error() {
+          fetchData(8.14, 4.34)
+          fetchLoc(8.14, 4.34)
         }
       )
+    } else {
+      fetchData(6.4550575, 3.3941795)
+      fetchLoc(6.4550575, 3.3941795)
     }
   }, [])
 
@@ -57,6 +61,7 @@ const AppProvider = ({ children }) => {
       return
     }
     setPeople(res[0])
+    console.log(res[0])
     const { lat, lon } = res[0]
     await fetchLoc(lat, lon)
     setLoading(false)

@@ -412,6 +412,9 @@ Grocery List
    /* min-width:  20rem; */
    max-width: 40rem;
   }
+  /* .temp{
+    width: 15rem;
+  } */
   .temp h1{
     font-size: 3.5rem;
   }
@@ -425,6 +428,12 @@ Grocery List
 @media screen and (max-width: 600px) {
   .mad{
     width: 35rem;
+  }
+  .numb img{
+    width: 12rem;
+  }
+  .temp{
+    width: 12rem;
   }
 
 }

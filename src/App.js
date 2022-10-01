@@ -26,6 +26,7 @@ function App() {
       hour: 'numeric',
       minute: 'numeric',
     }
+
     const city2 = new Intl.DateTimeFormat(locale, options2).format(now2)
     return city2
   }

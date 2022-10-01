@@ -96,6 +96,7 @@ body::-webkit-scrollbar{
 .numb{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .mad{
   padding: 2rem 4rem;

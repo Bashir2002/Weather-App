@@ -31,15 +31,19 @@ const AppProvider = ({ children }) => {
     setPeople(res[0])
   }
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const lat = position.coords.latitude
-        const long = position.coords.longitude
-        fetchData(lat, long)
-        fetchLoc(lat, long)
-      },
-      () => {}
-    )
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude
+          const long = position.coords.longitude
+          fetchData(lat, long)
+          fetchLoc(lat, long)
+        },
+        function () {
+          alert('Could not get your position')
+        }
+      )
+    }
   }, [])
 
   const fetchCords = async () => {

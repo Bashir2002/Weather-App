@@ -14,22 +14,6 @@ const AppProvider = ({ children }) => {
     msg: '',
     type: '',
   })
-
-  // function codeAddress() {
-  //   geocoder.geocode({ address: name }, function (results, status) {
-  //     if (status == 'OK') {
-  //       console.log(results)
-  // map.setCenter(results[0].geometry.location)
-  // var marker = new google.maps.Marker({
-  //   map: map,
-  //   position: results[0].geometry.location,
-  // })
-  //     } else {
-  //       alert('Geocode was not successful for the following reason: ' + status)
-  //     }
-  //   })
-  // }
-
   const fetchLoc = async (lat, long) => {
     setLoading(true)
     const data = await fetch(
@@ -41,7 +25,7 @@ const AppProvider = ({ children }) => {
   }
   const fetchData = async (lat, lon) => {
     const data = await fetch(
-      `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${key}`
+      `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${key}`
     )
     const res = await data.json()
     setPeople(res[0])
@@ -57,15 +41,12 @@ const AppProvider = ({ children }) => {
       () => {}
     )
   }, [])
-  // return `${this.baseUrl}/geo/1.0/direct?q=${city}&appid=${this.appId}`;
 
   const fetchCords = async () => {
     const data = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q=${name}&appid=${key}`
+      `https://api.openweathermap.org/geo/1.0/direct?q=${name}&appid=${key}`
     )
     const res = await data.json()
-    // console.log(data)
-    // console.log(res)
     if (res.length === 0) {
       setLoading(false)
       showAlert(true, 'danger', 'Error : city not found')
@@ -74,7 +55,6 @@ const AppProvider = ({ children }) => {
     setPeople(res[0])
     const { lat, lon } = res[0]
     await fetchLoc(lat, lon)
-    // await fetchData(lat, lon)
     setLoading(false)
   }
   const handleSubmit = (e) => {

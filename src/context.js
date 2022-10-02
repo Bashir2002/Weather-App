@@ -61,7 +61,6 @@ const AppProvider = ({ children }) => {
       return
     }
     setPeople(res[0])
-    console.log(res[0])
     const { lat, lon } = res[0]
     await fetchLoc(lat, lon)
     setLoading(false)

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Background } from './Background'
 import { GiSunset, GiSunrise } from 'react-icons/gi'
 import { FaTemperatureHigh, FaCloudRain } from 'react-icons/fa'
@@ -9,14 +9,18 @@ import { Input } from './input'
 import { AppContext } from './context'
 
 function App() {
-  const { showAlert, list, alert, loading, people } = useContext(AppContext)
+  const { showAlert, list, alert, loading, people, sit, time } =
+    useContext(AppContext)
+  // console.log(list)
   const [currentTime, setCurrentTime] = useState()
+
   const now = new Date()
   const options = {
     day: 'numeric',
     month: 'long',
     weekday: 'long',
   }
+  useEffect(() => {}, [list])
   const locale = navigator.language
   const city = new Intl.DateTimeFormat(locale, options).format(now)
   const formatdate = (name, name2) => {
@@ -30,7 +34,9 @@ function App() {
     const city2 = new Intl.DateTimeFormat(locale, options2).format(now2)
     return city2
   }
-  setInterval(() => {
+  const current = list.current
+  setInterval((sad) => {
+    // const sad = current.dt * 1000
     const currentTime = new Date()
     const options = {
       hour: 'numeric',
@@ -43,7 +49,7 @@ function App() {
   if (loading) {
     return <div className='spinner'></div>
   }
-  const current = list.current
+  // const current = list.current
   const main = current.dt
   const imgUrl = `http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`
 
